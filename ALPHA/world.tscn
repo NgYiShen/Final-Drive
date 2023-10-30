@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://by2sy68eiwns6"]
+
+[ext_resource type="Texture2D" uid="uid://bvvsbuc45c3aa" path="res://icon.svg" id="1_pyt2h"]
+[ext_resource type="PackedScene" uid="uid://i4p4c70soetw" path="res://GTR.tscn" id="1_qprwn"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_f3t6e"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hq0r1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avv10"]
+albedo_texture = ExtResource("1_pyt2h")
+uv1_scale = Vector3(9999, 9999, 9999)
+
+[sub_resource type="Theme" id="Theme_8icro"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c60gh"]
+
+[sub_resource type="Sky" id="Sky_fyfbi"]
+sky_material = SubResource("ProceduralSkyMaterial_c60gh")
+
+[sub_resource type="Environment" id="Environment_4esaf"]
+background_mode = 2
+sky = SubResource("Sky_fyfbi")
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.4
+glow_blend_mode = 0
+glow_hdr_threshold = 4.0
+glow_hdr_scale = 0.0
+
+[node name="World" type="Node3D"]
+
+[node name="GTR" parent="." instance=ExtResource("1_qprwn")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.771625, 0.636078, 0, -0.636078, -0.771625, 0, 100, 200)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.771624, 0.636078, 0, -0.636078, -0.771624, 0, 100, 200)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_f3t6e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(9999, 0, 0, 0, 1, 0, 0, 0, 9999, 0, 0.15, 0)
+mesh = SubResource("PlaneMesh_hq0r1")
+surface_material_override/0 = SubResource("StandardMaterial3D_avv10")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 912.0
+offset_top = 594.0
+offset_right = 1151.0
+offset_bottom = 664.0
+theme = SubResource("Theme_8icro")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4esaf")

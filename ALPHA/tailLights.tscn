@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddinij4gvbdm"]
+
+[ext_resource type="Script" path="res://TrailEffect.gd" id="1_2gq2n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bvwek"]
+resource_name = "red_glass"
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(100, 0, 0, 1)
+texture_repeat = false
+
+[node name="l1" type="MeshInstance3D"]
+transform = Transform3D(1, -9.62965e-35, 3.38813e-21, 0, 1, 2.84217e-14, -3.38813e-21, -2.84217e-14, 1, -1.49075, 0.3, 0)
+material_override = SubResource("StandardMaterial3D_bvwek")
+cast_shadow = 0
+gi_mode = 0
+script = ExtResource("1_2gq2n")
+fromWidth = 0.15
+toWidth = 0.05
+motionDelta = 0.001
+lifespan = 1.5
+scaleTexture = false
+startColor = Color(128.498, 0, 0, 0)
+endColor = Color(128.498, 0, 0, 0)
